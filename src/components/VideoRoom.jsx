@@ -1,19 +1,13 @@
 import AgoraRTC from "agora-rtc-sdk-ng";
-import React from "react";
 import { useEffect, useState } from "react";
 import VideoPlayer from "./VideoPlayer";
 
-type UserProps = {
-  uid: any;
-  videoTrack: any;
-};
-
-function VideoRoom() {
+export default function VideoRoom() {
   const APP_ID = import.meta.env.VITE_APP_ID;
   const TOKEN = import.meta.env.VITE_TOKEN;
   const CHANNEL = import.meta.env.VITE_CHANNEL;
-  const [users, setUsers] = useState<UserProps[]>([]);
-  const [localTracks, setLocalTracks] = useState<any[]>([]);
+  const [users, setUsers] = useState([]);
+  const [localTracks, setLocalTracks] = useState([]);
 
   const client = AgoraRTC.createClient({
     mode: "rtc",
@@ -70,6 +64,7 @@ function VideoRoom() {
       client.on("user-left", handleUserLeft);
       client.unpublish(localTracks).then(() => client.leave());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -87,5 +82,3 @@ function VideoRoom() {
     </div>
   );
 }
-
-export default VideoRoom;

@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import { useEffect, useRef } from "react";
 
 export default function VideoPlayer({ user }) {
@@ -8,7 +8,7 @@ export default function VideoPlayer({ user }) {
     if (user && user.videoTrack) {
       user.videoTrack.play(userRef.current);
     }
-  }, []);
+  }, [user]);
 
   return (
     <div>
