@@ -74,7 +74,7 @@ export default function VideoRoom() {
         {users.map((value, index) => {
           return (
             <div key={index}>
-              <VideoPlayer key={value.uid} user={users} />
+              <VideoPlayer key={value.uid} user={value} />
             </div>
           );
         })}

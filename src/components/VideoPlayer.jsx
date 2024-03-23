@@ -1,18 +1,24 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 export default function VideoPlayer({ user }) {
   const userRef = useRef(null);
 
-  useEffect(() => {
-    if (user && user.videoTrack) {
-      user.videoTrack.play(userRef.current);
-    }
+  const mainUser = useMemo(() => {
+    return user;
   }, [user]);
+
+  useEffect(() => {
+    if (mainUser && mainUser.videoTrack) {
+      mainUser.videoTrack.play(userRef.current);
+    }
+  }, [mainUser]);
+
+  console.log({ mainUser });
 
   return (
     <div>
-      UserID: {user.uid}
+      UserID: {mainUser.uid}
       <div ref={userRef} style={{ width: "400px", height: "400px" }}></div>
     </div>
   );
