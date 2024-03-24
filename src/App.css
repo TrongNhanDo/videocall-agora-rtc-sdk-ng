@@ -19,7 +19,7 @@
 .videoPlayer {
   width: 100%;
   border: 1px solid lightgray;
-  padding: 10px;
+  padding: 10px 0px;
   border-radius: 5px;
 }
 
@@ -29,20 +29,21 @@
   object-fit: contain;
   border-radius: 5px;
   overflow: hidden;
+  margin: 0px 10px;
 }
 
 .videoPlayer .userInfo {
   margin: 0px 0px 10px 0px;
 }
 
-.videoPlayer .divBtn {
+.videoRoom .divBtn {
   width: 100%;
   margin-top: 10px;
   display: flex;
   justify-content: center;
 }
 
-.videoPlayer .divBtn button {
+.videoRoom .divBtn button {
   display: block;
   width: fit-content;
   padding: 8px 30px;

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useRef } from "react";
 
-export default function VideoPlayer({ user, tracks, handleQuit }) {
+export default function VideoPlayer({ user }) {
   const userRef = useRef(null);
 
   useEffect(() => {
@@ -14,11 +14,6 @@ export default function VideoPlayer({ user, tracks, handleQuit }) {
     <div className="videoPlayer" key={user.uid}>
       <div className="userInfo">UserID: {user.uid}</div>
       <div className="video" ref={userRef}></div>
-      <div className="divBtn">
-        <button type="button" onClick={() => handleQuit(tracks, user)}>
-          Quit Room
-        </button>
-      </div>
     </div>
   );
 }

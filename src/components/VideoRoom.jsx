@@ -94,6 +94,16 @@ export default function VideoRoom({ quitRoom }) {
                 setLocalTracks={setLocalTracks}
                 handleQuit={handleQuit}
               />
+              {index === 0 && (
+                <div className="divBtn">
+                  <button
+                    type="button"
+                    onClick={() => handleQuit(value.tracks, value.user)}
+                  >
+                    Quit Room
+                  </button>
+                </div>
+              )}
             </div>
           );
         })}
