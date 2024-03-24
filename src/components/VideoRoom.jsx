@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import AgoraRTC from "agora-rtc-sdk-ng";
 import { useEffect, useState } from "react";
 import VideoPlayer from "./VideoPlayer";
 
-export default function VideoRoom() {
+export default function VideoRoom({ quitRoom }) {
   const APP_ID = import.meta.env.VITE_APP_ID;
   const TOKEN = import.meta.env.VITE_TOKEN;
   const CHANNEL = import.meta.env.VITE_CHANNEL;
@@ -49,6 +50,7 @@ export default function VideoRoom() {
             uid,
             videoTrack,
             audioTrack,
+            tracks,
           },
         ]);
         client.publish(tracks);
@@ -67,14 +69,31 @@ export default function VideoRoom() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleQuit = (tracks, user) => {
+    for (let item of tracks) {
+      item.stop();
+      item.close();
+    }
+
+    setLocalTracks((prev) => prev.filter((e) => e.uid !== user.uid));
+    setUsers((prev) => prev.filter((e) => e.uid !== user.uid));
+    quitRoom();
+  };
+
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <h2>VIDEO ROOM</h2>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 400px)" }}>
+    <div className="videoRoom">
+      {/* <h2>VIDEO ROOM</h2> */}
+      <div className="roomContain">
         {users.map((value, index) => {
           return (
             <div key={index}>
-              <VideoPlayer key={value.uid} user={value} />
+              <VideoPlayer
+                key={index}
+                user={value}
+                tracks={value.tracks}
+                setLocalTracks={setLocalTracks}
+                handleQuit={handleQuit}
+              />
             </div>
           );
         })}

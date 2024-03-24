@@ -4,3 +4,46 @@
   padding: 2rem;
   text-align: center;
 }
+
+.videoRoom {
+  display: flex;
+  justify-content: center;
+}
+
+.videoRoom .roomContain {
+  width: 900px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.videoPlayer {
+  width: 100%;
+  border: 1px solid lightgray;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.videoPlayer .video {
+  height: 400px;
+  width: 400px;
+  object-fit: contain;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.videoPlayer .userInfo {
+  margin: 0px 0px 10px 0px;
+}
+
+.videoPlayer .divBtn {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.videoPlayer .divBtn button {
+  display: block;
+  width: fit-content;
+  padding: 8px 30px;
+}

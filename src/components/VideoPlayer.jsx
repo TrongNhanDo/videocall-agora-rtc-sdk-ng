@@ -1,25 +1,24 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 
-export default function VideoPlayer({ user }) {
+export default function VideoPlayer({ user, tracks, handleQuit }) {
   const userRef = useRef(null);
 
-  const mainUser = useMemo(() => {
-    return user;
+  useEffect(() => {
+    if (user && user.videoTrack) {
+      user.videoTrack.play(userRef.current);
+    }
   }, [user]);
 
-  useEffect(() => {
-    if (mainUser && mainUser.videoTrack) {
-      mainUser.videoTrack.play(userRef.current);
-    }
-  }, [mainUser]);
-
-  console.log({ mainUser });
-
   return (
-    <div>
-      UserID: {mainUser.uid}
-      <div ref={userRef} style={{ width: "400px", height: "400px" }}></div>
+    <div className="videoPlayer" key={user.uid}>
+      <div className="userInfo">UserID: {user.uid}</div>
+      <div className="video" ref={userRef}></div>
+      <div className="divBtn">
+        <button type="button" onClick={() => handleQuit(tracks, user)}>
+          Quit Room
+        </button>
+      </div>
     </div>
   );
 }

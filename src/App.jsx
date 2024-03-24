@@ -5,6 +5,10 @@ import VideoRoom from "./components/VideoRoom";
 function App() {
   const [joined, setJoined] = useState(false);
 
+  const handleQuitRoom = () => {
+    setJoined(false);
+  };
+
   return (
     <div className="App">
       <h1>A BASIC VIDEO CALL APPLICATION</h1>
@@ -15,7 +19,7 @@ function App() {
           </button>
         </>
       )}
-      {joined && <VideoRoom />}
+      {joined && <VideoRoom quitRoom={handleQuitRoom} />}
     </div>
   );
 }
